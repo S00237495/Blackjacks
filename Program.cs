@@ -96,10 +96,15 @@
     {
         private List<Card> cards;
         private Random random = new Random();
+        //add on feature if jokes is pulled instant loss
+        private bool hasJoker;
 
-        public Deck()
+        public Deck(bool includeJoker = false)
         {
             cards = new List<Card>();
+
+            hasJoker = includeJoker;
+
             foreach (string suit in new[] { "Hearts", "Diamonds", "Clubs", "Spades" })
             {
                 for (int rank = 2; rank <= 10; rank++)
@@ -111,6 +116,12 @@
                 cards.Add(new Card("King", suit));
                 cards.Add(new Card("Ace", suit));
             }
+            if (hasJoker)
+            {
+                cards.Add(new Card("JOKER", "JOKERSUIT"));
+            }
+
+            
         }
 
         public void Shuffle()
@@ -127,17 +138,30 @@
         public Card DrawCard()
         {
             Card card = cards[0];
+          
+            
             cards.RemoveAt(0);
+
+            if (hasJoker && card.Rank == "Joker")
+            {
+                Console.WriteLine("MWAHAHAHAAHAHA JOKER HAS BEEN PULLED HAHAHA YOU LLLLLLLOOOOOOOOSEEEEEE");
+                Environment.Exit(0); 
+                // Exit the game
+            }
+
             return card;
         }
     }
 
     class Card
     {
+      
         public string Rank { get; }
         public string Suit { get; }
 
         public Card(string rank, string suit)
+      
+        
         {
             Rank = rank;
             Suit = suit;
@@ -157,6 +181,8 @@
             return $"{Rank} of {Suit}";
         }
     }
+
+
 
     class Hand
     {
