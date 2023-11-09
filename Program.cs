@@ -1,5 +1,7 @@
 ﻿namespace Blackjack
 {
+    //KRISTERS STEINERTS
+    //S00237495
     internal class Program
     {
         static void Main(string[] args)
@@ -49,7 +51,7 @@
                     playerHand.Display();
                     if (playerHand.GetTotal() > 21)
                     {
-                        Console.WriteLine("Bust! You lose.");
+                        Console.WriteLine("youuuu busteddd you loooseeee");
                         return;
                     }
                 }
@@ -59,7 +61,7 @@
                 }
             }
 
-            // Dealer's turn
+            // Dealers turn
             Console.WriteLine("Dealer's turn:");
             dealerHand.Display();
             while (dealerHand.GetTotal() < 17)
@@ -79,14 +81,17 @@
 
             if (playerTotal > dealerTotal)
             {
+                //WIN 
                 Console.WriteLine("You win!");
             }
             else if (dealerTotal > playerTotal)
             {
+                //DEALER WIN
                 Console.WriteLine("Dealer wins.");
             }
             else
             {
+                //TIE
                 Console.WriteLine("It's a tie.");
             }
         }
@@ -98,7 +103,7 @@
         private Random random = new Random();
         //add on feature if jokes is pulled instant loss
         private bool hasJoker;
-
+        //YOUR DEACK OF CARDS
         public Deck(bool includeJoker = false)
         {
             cards = new List<Card>();
@@ -123,7 +128,7 @@
 
             
         }
-
+        //SHUFFLING
         public void Shuffle()
         {
             for (int i = 0; i < cards.Count; i++)
@@ -178,6 +183,7 @@
 
         public override string ToString()
         {
+            //the dollar sign $ is used to create interpolated strings
             return $"{Rank} of {Suit}";
         }
     }
